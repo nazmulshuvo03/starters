@@ -8,7 +8,8 @@ import {
 import { ethers } from "ethers";
 import { MainContext } from "./MainProvider";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../constants/contract";
-import { CURRENCY } from "../constants/types";
+import { CURRENCY } from "../constants";
+import { AppStates } from "../constants/states";
 
 declare global {
   interface Window {
@@ -45,7 +46,7 @@ interface WalletProviderProps {
 }
 
 const WalletProvider = ({ children }: WalletProviderProps) => {
-  const {} = useContext(MainContext);
+  const { updateAppState } = useContext(MainContext);
 
   const [provider, setProvider] =
     useState<ethers.providers.JsonRpcProvider | null>(null);
@@ -83,6 +84,7 @@ const WalletProvider = ({ children }: WalletProviderProps) => {
       console.log("signer address: ", address);
       setWalletAddress(address);
       setIsWalletConnected(true);
+      updateAppState(AppStates.HOME);
       // const accounts = await provider.send("eth_requestAccounts", []);
       // console.log("accounts: ", accounts);
       // if (accounts.length > 0) {
@@ -97,6 +99,7 @@ const WalletProvider = ({ children }: WalletProviderProps) => {
       await provider.send("eth_requestAccounts", [{ eth_accounts: {} }]);
       setIsWalletConnected(false);
       setWalletAddress("");
+      updateAppState(AppStates.NOT_CONNECTED);
     }
   }
 
@@ -114,6 +117,7 @@ const WalletProvider = ({ children }: WalletProviderProps) => {
       );
       setWalletAddress(address);
       setIsWalletConnected(true);
+      updateAppState(AppStates.HOME);
       // await provider.send("eth_accounts", []);
       // const accounts = await provider.send("eth_accounts", []);
       // console.log("accounts: ", accounts);
