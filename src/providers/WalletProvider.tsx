@@ -58,15 +58,15 @@ const WalletProvider = ({ children }: WalletProviderProps) => {
 
   useEffect(() => {
     if (window.ethereum) {
-      // const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-      // console.log("web3 provider: ", web3Provider);
+      const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+      console.log("web3 provider: ", web3Provider);
 
-      const rpcProvider = new ethers.providers.JsonRpcProvider(
-        "http://127.0.0.1:8545"
-      );
-      console.log("json rpc provider: ", rpcProvider);
+      // const rpcProvider = new ethers.providers.JsonRpcProvider(
+      //   "http://127.0.0.1:8545"
+      // );
+      // console.log("json rpc provider: ", rpcProvider);
 
-      setProvider(rpcProvider);
+      setProvider(web3Provider);
     }
   }, []);
 
@@ -74,6 +74,8 @@ const WalletProvider = ({ children }: WalletProviderProps) => {
     if (provider) {
       const network = await provider.getNetwork();
       console.log("network: ", network);
+      const accounts = await provider.send("eth_requestAccounts", []);
+      console.log("accounts: ", accounts);
       const signer = provider.getSigner();
       console.log("signer: ", signer);
       setSigner(signer);
