@@ -1,11 +1,6 @@
-import { useContext } from "react";
-import { MainContext } from "./providers/MainProvider";
 import Navbar from "./components/Navbar";
 
 function App() {
-  const { theme } = useContext(MainContext);
-  // console.log("theme: ", theme);
-
   return (
     <div className="h-full w-full flex flex-col">
       <Navbar />
