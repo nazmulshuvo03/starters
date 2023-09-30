@@ -2,9 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { MainProvider } from "./providers/MainProvider.tsx";
+import { WalletProvider } from "./providers/WalletProvider.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <MainProvider>
+      <WalletProvider>
+        <App />
+      </WalletProvider>
+    </MainProvider>
+  </React.StrictMode>
+);
