@@ -6,7 +6,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#F2C94C",
+        primary: "#00B894", // Cryptocurrency Green
+        secondary: "#F2C94C", // Digital Gold
+        accent: "#3498DB", // Smart Contract Blue
+        background: "#2C3E50", // Midnight Black
+        text: "#FFFFFF", // White Snow
+        textAccent: "#D3D3D3", // Almost White
+        button: "#E67E22", // Playful Orange
+        highlight: "#9B59B6", // Puzzle Purple
+        error: "#E74C3C", // Blockchain Red
+        success: "#2ECC71", // Mint Green
+        backgroundAccent: "#95A5A6", // Pixel Gray
       },
     },
   },
